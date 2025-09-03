@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday wish🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+    }
+
+    /* Background Animation */
+    .animated-bg {
+      background: linear-gradient(-45deg, #ff758c, #ff7eb3, #fad0c4, #a18cd1, #fbc2eb, #ffd1ff);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Page 1 */
+    .page1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+    }
+    .gift-box {
+      width: 160px;
+      height: 160px;
+      background: #ff4757;
+      position: relative;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+      animation: shake 2s infinite ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(1deg); }
+    }
+    .lid {
+      width: 170px;
+      height: 45px;
+      background: #e84118;
+      position: absolute;
+      top: -45px;
+      left: -5px;
+      border-radius: 12px 12px 0 0;
+      transition: transform 1s;
+      transform-origin: bottom;
+    }
+    .ribbon {
+      width: 32px;
+      height: 160px;
+      background: #fbc531;
+      position: absolute;
+      left: 64px;
+      top: 0;
+      border-radius: 6px;
+    }
+    .click-text {
+      margin-top: 25px;
+      font-size: clamp(1.5rem, 6vw, 2.3rem);
+      font-weight: 600;
+      background: linear-gradient(90deg,#36E368, #fffa65, #ff7675);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 2s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* Page 2 */
+    .page2 {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .typewriter {
+      font-family: "Pacifico", cursive;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-weight: bold;
+      color: #fff;
+      
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #fff;
+      animation: typing 4s steps(40, end), blink 0.7s infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .cake {
+      font-size: clamp(5rem, 20vw, 8rem);
+      margin: 25px 0;
+      animation: bounce 2s infinite;
+      position: relative;
+      text-shadow: 0px 0px 25px #fffa65, 0 0 40px #ff7675;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+/* Flip Card */
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;   /* Ensures wrapper takes available space */
+  margin-top: 20px;
+}
+
+.card {
+  width: 90%;
+  max-width: 380px;
+  height: auto;
+  aspect-ratio: 16/11;
+  perspective: 1000px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner { 
+  transform: rotateY(180deg); 
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+  border: 3px solid #ffd700;
+  box-sizing: border-box;  /* Prevents padding from breaking layout */
+}
+
+.card-front {
+  background: linear-gradient(135deg, #fff6f6, #ffeaea);
+  color: #e84118;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-weight: bold;
+}
+
+.card-back {
+  background: #fff;
+  transform: rotateY(180deg);
+  font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  color: #333;
+  line-height: 1.5;
+  padding: 20px;
+  text-align: left;
+  border-radius: 20px;
+  border: 3px solid #ffd700;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  
+  /* ✅ Scroll fix */
+  overflow-y: auto;
+  display: block;
+  /* flex hataya */
+  box-sizing: border-box;
+}
+
+
+    /* Floating balloons & hearts */
+    .floating {
+      position: absolute;
+      bottom: -50px;
+      font-size: 2rem;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Fireworks */
+    canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <div class="page1 animated-bg" id="page1">
+    <div class="gift-box" id="gift">
+      <div class="lid" id="lid"></div>
+      <div class="ribbon"></div>
+    </div>
+    <div class="click-text">🎁 Click to Open 🎉</div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page2 animated-bg" id="page2">
+    <div class="typewriter" id="typewriter"></div>
+    <div class="cake">🍰</div>
+    <div class="typewriter" style="font-size: clamp(1.2rem,4vw,2rem); animation: none; border: none; white-space: normal; text-shadow: 0 0 10px #fff, 0 0 25px gold;">
+✨ Wishing you endless joy, health, and success in every step of life🙏
+    </div>
+
+    <!-- Card -->
+    <div class="card-wrapper">
+      <div class="card" id="card">
+        <div class="card-inner">
+          <div class="card-front">💌 Open This 👇</div>
+          <div class="card-back">
+            Dear Sir,<br><br>
+            On this beautiful day, I wish you boundless happiness, endless wisdom,  
+            and the strength to achieve all your dreams. <br><br>
+            May your journey ahead shine brighter than fireworks ✨  
+            and be as sweet as this cake 🍰. <br><br>
+            Thank you for being an inspiration to me, always 🙏❤️  
+            <br><br>Happy Birthday! 🎉
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fireworks -->
+    <canvas id="fireworks"></canvas>
+  </div>
+
+  <script>
+    const gift = document.getElementById("gift");
+    const lid = document.getElementById("lid");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const card = document.getElementById("card");
+
+    gift.addEventListener("click", () => {
+      lid.style.transform = "rotateX(150deg)";
+      setTimeout(() => {
+        page1.style.opacity = "0";
+        setTimeout(() => {
+          page1.style.display = "none";
+          page2.style.display = "flex";
+          startTypewriter();
+          launchFireworks();
+          launchBalloons();
+        }, 800);
+      }, 700);
+    });
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+    });
+
+    // Typewriter effect
+    function startTypewriter() {
+      const text = "🎉 Happy Birthday Sir🎂";
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          document.getElementById("typewriter").textContent += text.charAt(i);
+          i++;
+          setTimeout(typing, 120);
+        }
+      }
+      typing();
+    }
+
+    // Fireworks
+    function launchFireworks() {
+      const canvas = document.getElementById("fireworks");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const particles = [];
+
+      function createFirework(x, y) {
+        for (let i = 0; i < 50; i++) {
+          particles.push({
+            x, y,
+            angle: Math.random() * 2 * Math.PI,
+            speed: Math.random() * 5 + 2,
+            radius: 2,
+            alpha: 1
+          });
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.x += Math.cos(p.angle) * p.speed;
+          p.y += Math.sin(p.angle) * p.speed;
+          p.alpha -= 0.01;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+          ctx.fillStyle = `hsla(${Math.random() * 360},100%,60%,${p.alpha})`;
+          ctx.fill();
+          if (p.alpha <= 0) particles.splice(i, 1);
+        }
+        requestAnimationFrame(animate);
+      }
+      setInterval(() => {
+        createFirework(Math.random() * canvas.width, Math.random() * canvas.height / 2);
+      }, 1500);
+      animate();
+    }
+
+    // Floating balloons & hearts
+    function launchBalloons() {
+      const symbols = ["🎈", "❤️", "💖", "💝"];
+      setInterval(() => {
+        const span = document.createElement("span");
+        span.className = "floating";
+        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.animationDuration = (6 + Math.random() * 4) + "s";
+        document.querySelector(".page2").appendChild(span);
+        setTimeout(() => span.remove(), 10000);
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
